@@ -8,8 +8,8 @@ from bson.objectid import ObjectId
 def dao():
     with patch("src.util.dao.getValidator") as mock_get_validator:
         from src.util.validators import getValidator
-        mock_get_validator.return_value = getValidator("users")
-        test_dao = DAO("_users")
+        mock_get_validator.return_value = getValidator("user")
+        test_dao = DAO("_user")
         test_dao.collection.create_index("email", unique=True)
         yield test_dao
         test_dao.drop() # or .collection.drop()?
@@ -23,8 +23,6 @@ def test_case_1_create_all_required_fields_valid(dao):
     assert res.get("firstName") == user["firstName"]
     assert res.get("lastName") == user["lastName"]
     assert res.get("email") == user["email"]
-
-    pass
 
 def test_case_2_create_firstName_field_missing(dao):
     """Test Case 2: Create a user with firstName field missing"""
@@ -109,6 +107,3 @@ def test_case_13_create_valid_with_bool_task_field(dao):
     user = {"firstName": "Jane", "lastName": "Doe", "email": "jane.doe@example.com", "tasks": True}
     with pytest.raises(WriteError):
         res = dao.create(user)
-
-
-
