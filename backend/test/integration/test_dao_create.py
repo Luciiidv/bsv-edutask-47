@@ -107,3 +107,14 @@ def test_case_13_create_valid_with_bool_task_field(dao):
     user = {"firstName": "Jane", "lastName": "Doe", "email": "jane.doe@example.com", "tasks": True}
     with pytest.raises(WriteError):
         res = dao.create(user)
+
+def test_case_14_create_valid_with_random_property(dao):
+    """Test Case 14: Create a user with random property"""
+    user = {"firstName": "Jane", "lastName": "Doe", "email": "jane.doe@example.com", "someRandomProperty": "someRandomValue"}
+    res = dao.create(user)
+    assert res is not None
+    assert res.get("_id") is not None
+    assert res.get("firstName") == user["firstName"]
+    assert res.get("lastName") == user["lastName"]
+    assert res.get("email") == user["email"]
+    assert res.get("someRandomProperty") == user["someRandomProperty"]
