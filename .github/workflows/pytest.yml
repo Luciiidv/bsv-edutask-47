@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest -r requirements.pip
+          pip install pytest -r requirements.txt
       - name: Unit Tests
         run: |
-          python -m pytest -m test/unit
+          python -m pytest -m backend/test/unit
