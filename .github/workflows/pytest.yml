@@ -24,4 +24,4 @@ steps:
           pip install pytest -r requirements.txt
       - name: Unit Tests
         run: |
-          python -m pytest -m backend/tests/unit
+          python -m pytest -m backend/test/unit
