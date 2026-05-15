@@ -24,4 +24,4 @@ jobs:
           pip install pytest -r requirements.txt
       - name: Unit Tests
         run: |
-          python -m pytest -m backend/test/unit
+          python -m pytest backend/test/unit
