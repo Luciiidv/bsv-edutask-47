@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python 3.10
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.10"
           cache: "pip"
@@ -24,4 +24,4 @@ jobs:
           pip install pytest -r requirements.txt
       - name: Unit Tests
         run: |
-          python -m pytest -m backend/test/unit
+          python -m pytest backend/test/unit
